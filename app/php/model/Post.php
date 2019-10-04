@@ -9,24 +9,51 @@ namespace app\php\model;
 class Post
 {
 
-    private $idtitre;
-    private $source;
+    private $id;
 
     /**
      * @return mixed
      */
-    public function getIdtitre()
+    public function getId()
     {
-        return $this->idtitre;
+        return $this->id;
     }
 
     /**
-     * @param mixed $idtitre
+     * @param mixed $id
      */
-    public function setIdtitre($idtitre)
+    public function setId($id)
     {
-        $this->idtitre = $idtitre;
+        $this->id = $id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param mixed $titre
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    }
+    private $titre;
+    private $source;
+    private $link;
+    private $idcategorie;
+    private $media;
+    private $text;
+    private $like;
+    private $dislike;
+    private $retweet;
+
+
+
 
     /**
      * @return mixed
@@ -63,7 +90,7 @@ class Post
     /**
      * @return mixed
      */
-    public function getCategorie()
+    public function getIdategorie()
     {
         return $this->categorie;
     }
@@ -71,7 +98,7 @@ class Post
     /**
      * @param mixed $categorie
      */
-    public function setCategorie($categorie)
+    public function setIdcategorie($categorie)
     {
         $this->categorie = $categorie;
     }
@@ -155,13 +182,7 @@ class Post
     {
         $this->retweet = $retweet;
     }
-    private $link;
-    private $categorie;
-    private $media;
-    private $text;
-    private $like;
-    private $dislike;
-    private $retweet;
+
 
 
     public function __construct(array $donnees){

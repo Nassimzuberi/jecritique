@@ -15,7 +15,6 @@ class Factory{
         $user = new \app\php\model\Category($donnees);
         $pdo = $this->getDb();
         $requete = "INSERT INTO {$this->class_name} ";
-        var_dump($requete);
         $champ = '';
         $ky = '';
         $keys = array_keys($donnees);
@@ -23,18 +22,32 @@ class Factory{
         foreach ($donnees as $k => $val) {
             if ($k === $last_key) {
                 $champ .= $k;
-                $ky .= $k . ' = ? ';
+                $ky .= ':'. $k;
             } else {
                 $champ .= $k . ' , ';
-                $ky .= $k . ' = ? , ';
+                $ky .= ':'.$k.' , ';
             }
 
         }
-
         $query = $requete . "(" . $champ . ") values (" . $ky . ") ";
         $data = $pdo->prepare($query);
         $res = $data->execute($donnees);
         return $res;
+
+    }
+
+    public function find($id){
+        $pdo = $this->getDb();
+        $req = $pdo->query("SELECT * FROM {$this->class_name} WHERE id = {$id}");
+        $data = $req->fetch();
+        return $data;
+    }
+
+    public function all(){
+        $pdo = $this->getDb();
+        $req = $pdo->query("SELECT * FROM {$this->class_name}");
+        $data = $req->fetchAll();
+        return $data;
 
     }
 

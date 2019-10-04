@@ -25,21 +25,18 @@ class UserFactory extends Factory
             'mdp' => $mdp
         ]);
         if($res){
-            $result = $statement->fetch(PDO::FETCH_NUM);
-            foreach($result as $key => $val){
-                $donnees[]= $val;
-            }
-            $id = $donnees[0];
-            $data = array_slice($donnees,1);
-
-            $this->user = new User($data);
-            $this->user->getId();
-
+            $result = $statement->fetch();
+            $this->user = new User($result);
+            $_SESSION['user'] = $this->user->getId();
+            return true;
+        }else{
+            return false;
         }
     }
 
     public function getUser(){
 
+        return $this->user;
     }
     public function read(){
 
