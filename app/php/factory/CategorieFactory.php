@@ -12,21 +12,8 @@ class CategorieFactory extends Factory
         $pdo = $this->getDb();
         $req = $pdo->query("SELECT count(*) FROM post where idCategorie = {$id} ");
         $data = $req->fetch();
-        return $data;
+        return $data[0];
     }
 
-    public function read()
-    {
-
-    }
-
-    public function update()
-    {
-    }
-
-    public function delete()
-    {
-
-    }
 
 }

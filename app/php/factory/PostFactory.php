@@ -28,14 +28,17 @@ class PostFactory extends Factory
         $data = $req->fetch();
         return $data;
     }
-    public function read(){
-
+    public function NbCritique($id){
+        $pdo = $this->getDb();
+        $req = $pdo->query("SELECT count(*) FROM critique WHERE idPost = {$id} ");
+        $data = $req->fetch();
+        return $data[0];
     }
-
-    public function update(){
-    }
-    public function delete(){
-
+    public function showCritiqueByPost($id){
+        $pdo = $this->getDb();
+        $req = $pdo->query("SELECT * FROM critique LEFT JOIN user on user.id = critique.idUser WHERE idPost = {$id}");
+        $data = $req->fetchAll();
+        return $data;
     }
 
 }

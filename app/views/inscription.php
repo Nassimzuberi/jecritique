@@ -20,6 +20,8 @@
     <input type="text" name="email" class="form-control">
     <label>Mot de passe :</label>
     <input type="password" name="mdp" class="form-control">
+    <label>Confirmation du mot de passe :</label>
+    <input type="password" name="mdpconfirm" class="form-control">
     <input type="hidden" name="dateinscription" value="<?= date('Y-m-d') ;?>">
-    <button type="submit" class="btn btn-success">S'incrire</button>
+    <button type="submit" class="btn btn-success mt-3">S'incrire</button>
 </form>

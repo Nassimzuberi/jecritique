@@ -44,8 +44,5 @@ class UserFactory extends Factory
 
     public function update(){
     }
-    public function delete(){
-
-    }
 
 }

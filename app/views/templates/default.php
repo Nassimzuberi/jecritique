@@ -28,7 +28,7 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
         <a class="navbar-brand" href="index.php">Je critique</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,18 +36,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="?p=add.categorie">Ajouter une catégorie
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?p=add.post">Ajouter un article
-                    </a>
-                </li>
                 <?php if(isset($_SESSION['user'])){
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link active" href="?p=compte">Mon compte
+                        <a class="nav-link active" href="?p=index.user">Mon compte
                         </a>
                     </li>
                     <li class="nav-item">

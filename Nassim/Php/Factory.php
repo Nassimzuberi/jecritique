@@ -12,7 +12,6 @@ class Factory{
 
     public function create(array $donnees)
     {
-        $user = new \app\php\model\Category($donnees);
         $pdo = $this->getDb();
         $requete = "INSERT INTO {$this->class_name} ";
         $champ = '';
@@ -60,5 +59,32 @@ class Factory{
         return $this->db;
 
     }
+    public function delete($id){
 
+
+        return $this->getDb()->query("DELETE FROM {$this->class_name} WHERE id ={$id}");
+
+    }
+
+    public function like($id){
+        $pdo = $this->getDb();
+        $req = $pdo->query("UPDATE {$this->class_name} set post.like = post.like + 1 WHERE id = {$id}");
+        return $req;
+    }
+
+    public function unlike($id){
+        $pdo = $this->getDb();
+        $req = $pdo->query("UPDATE {$this->class_name} set post.like = post.like - 1 WHERE id = {$id}");
+        return $req;
+    }
+    public function dislike($id){
+        $pdo = $this->getDb();
+        $req = $pdo->query("UPDATE {$this->class_name} set post.dislike = post.dislike + 1 WHERE id = {$id}");
+        return $req;
+    }
+    public function undislike($id){
+        $pdo = $this->getDb();
+        $req = $pdo->query("UPDATE {$this->class_name} set post.dislike = post.dislike - 1 WHERE id = {$id}");
+        return $req;
+    }
 }

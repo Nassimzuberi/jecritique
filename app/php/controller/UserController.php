@@ -12,10 +12,18 @@ class UserController extends HomeController{
         $success = null;
         if($_POST){
             foreach($_POST as $key => $val){
-                $formdata[$key] = $val;
+                if(!($key === "mdpconfirm")){
+                    $formdata[$key] = $val;
+                }
             }
-            if($user->create($formdata)){
-                $success = true;
+            if($_POST['mdp'] == $_POST['mdpconfirm']){
+                if($user->create($formdata)){
+
+                    $success = true;
+                }
+            }
+            else{
+                echo "<div class='alert alert-danger'>Les deux mot de passe doivent correspondre </div>";
             }
         }
         $this->render('inscription',compact('formdata','success'));
@@ -38,6 +46,12 @@ class UserController extends HomeController{
         $this->index();
     }
 
+    public function moncompte(){
+        $users = new UserFactory();
+        $user = $users->find($_SESSION['user']);
+
+        $this->render('index.user', compact('user'));
+    }
 
 }
 /*

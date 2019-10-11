@@ -10,10 +10,12 @@ namespace app\php\controller;
 
 
 use app\php\factory\CategorieFactory;
+use app\php\factory\CritiqueFactory;
 use app\php\factory\PostFactory;
 
 class PostController extends HomeController
 {
+
     public function add(){
         $categorieFactory = new CategorieFactory();
         $categories = $categorieFactory->all();
@@ -35,7 +37,19 @@ class PostController extends HomeController
 
     public function indexPost(){
         $posts = new PostFactory();
+        $critiqueFactory = new CritiqueFactory();
         $post = $posts->find($_GET['id']);
-        $this->render('index.post',compact('post'));
+        $critiques = $posts->showCritiqueByPost($_GET['id']);
+
+        if($_POST){
+            if(isset($_SESSION['user'])){
+                $critiqueFactory->create($_POST);
+            }
+            else{
+                header('location:?p=connexion');
+            }
+        }
+        $this->render('index.post',compact('post','critiques','critiqueFactory'));
     }
+
 }

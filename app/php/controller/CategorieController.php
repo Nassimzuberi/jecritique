@@ -15,6 +15,7 @@ use app\php\factory\PostFactory;
 class CategorieController extends HomeController
 {
 
+
     public function add(){
         $post = new CategorieFactory();
         $success = null;
@@ -32,8 +33,11 @@ class CategorieController extends HomeController
         $this->render('add.categorie', compact('success'));
     }
     public function indexCat(){
-        $post = new PostFactory();
-        $posts = $post->findByCat($_GET['id']);
-        $this->render('index.categorie',compact('posts'));
+        $postFactory = new PostFactory();
+        $posts = $postFactory->findByCat($_GET['id']);
+        $category = new CategorieFactory();
+        $categorie = $category->find($_GET['id']);
+        $lib = $categorie['lib'];
+        $this->render('index.categorie',compact('posts','postFactory','lib'));
     }
 }
