@@ -12,6 +12,7 @@ namespace app\php\controller;
 use app\php\factory\CategorieFactory;
 use app\php\factory\CritiqueFactory;
 use app\php\factory\PostFactory;
+use app\php\factory\UserFactory;
 
 class PostController extends HomeController
 {
@@ -25,6 +26,14 @@ class PostController extends HomeController
             foreach($_POST as $key => $val){
                 $formdata[$key] = $val;
             }
+            if(isset($_FILES)){
+                $parts = explode('.', $_FILES['image']['name']);
+                $dir=ROOT . '/app/static/image/post/';
+                $tmp = $_FILES{'image'}['tmp_name'];
+                $name = str_replace('.','',$_POST['titre']) . '.'. $parts[1];
+                move_uploaded_file($tmp, $dir . $name);
+                $formdata['imgname'] = $name;
+            }
             if($post->create($formdata)){
                 $success = true;
             }else{
@@ -36,6 +45,7 @@ class PostController extends HomeController
     }
 
     public function indexPost(){
+        $userFactory = new UserFactory();
         $posts = new PostFactory();
         $critiqueFactory = new CritiqueFactory();
         $post = $posts->find($_GET['id']);
@@ -49,7 +59,7 @@ class PostController extends HomeController
                 header('location:?p=connexion');
             }
         }
-        $this->render('index.post',compact('post','critiques','critiqueFactory'));
+        $this->render('index.post',compact('post','critiques','critiqueFactory','userFactory'));
     }
 
 }

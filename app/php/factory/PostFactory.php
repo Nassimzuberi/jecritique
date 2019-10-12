@@ -2,9 +2,11 @@
 namespace app\php\factory;
 
 use Nassim\Php\Factory;
+use Nassim\Php\Traits\Likeable;
 
 class PostFactory extends Factory
 {
+    use Likeable;
     protected $class_name = 'post';
 
 

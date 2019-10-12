@@ -32,35 +32,35 @@ class HomeController extends Controller
         $posts = $postFactory->all();
         $category = new CategorieFactory();
         $categories = $category->all();
-        $this->render('home',compact('posts','categories','category','auth','postFactory'));
+        $this->render('home',compact('posts','categories','category','auth','postFactory','userFactory'));
     }
 
     public function like(){
-        $action = new ActionFactory();
-        $postFactory = new PostFactory();
-        $like = $action->likePost($_SESSION['user'],$_GET['id'],$_GET['objet']);
-            if(!$like){
-                $postFactory->like($_GET['id']);
-                header('location:index.php');
-            }
-            else{
-                $action->delete($like['id']);
-                $postFactory->unlike($_GET['id']);
-                header('location:index.php');
-            }
+        if(isset($_SESSION['user'])){
+            $action = new ActionFactory();
+            $action->like($_SESSION['user'],$_GET['id'],$_GET['objet']);
+            $previous = $_SERVER['HTTP_REFERER'];
+            header('location:'.$previous);
+        } else{
+            header('location:?p=connexion');
+
+        }
+
     }
     public function dislike(){
-        $action = new ActionFactory();
-        $postFactory = new PostFactory();
-        $dislike = $action->dislikePost($_SESSION['user'],$_GET['id'],$_GET['objet']);
-        if(!$dislike){
-            $postFactory->dislike($_GET['id']);
-            header('location:index.php');
+        if(isset($_SESSION['user'])) {
+            $action = new ActionFactory();
+            $action->dislike($_SESSION['user'], $_GET['id'], $_GET['objet']);
+            $previous = $_SERVER['HTTP_REFERER'];
+            header('location:' . $previous);
         }
         else{
-            $action->delete($dislike['id']);
-            $postFactory->undislike($_GET['id']);
-            header('location:index.php');
+            header('location:?p=connexion');
         }
+
+    }
+
+    public function likeTest(){
+        $this->render('like');
     }
 }

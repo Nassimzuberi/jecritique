@@ -66,25 +66,4 @@ class Factory{
 
     }
 
-    public function like($id){
-        $pdo = $this->getDb();
-        $req = $pdo->query("UPDATE {$this->class_name} set post.like = post.like + 1 WHERE id = {$id}");
-        return $req;
-    }
-
-    public function unlike($id){
-        $pdo = $this->getDb();
-        $req = $pdo->query("UPDATE {$this->class_name} set post.like = post.like - 1 WHERE id = {$id}");
-        return $req;
-    }
-    public function dislike($id){
-        $pdo = $this->getDb();
-        $req = $pdo->query("UPDATE {$this->class_name} set post.dislike = post.dislike + 1 WHERE id = {$id}");
-        return $req;
-    }
-    public function undislike($id){
-        $pdo = $this->getDb();
-        $req = $pdo->query("UPDATE {$this->class_name} set post.dislike = post.dislike - 1 WHERE id = {$id}");
-        return $req;
-    }
 }

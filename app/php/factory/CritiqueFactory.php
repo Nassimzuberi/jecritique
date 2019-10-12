@@ -4,9 +4,11 @@ namespace app\php\factory;
 
 
 use Nassim\Php\Factory;
+use Nassim\Php\Traits\Likeable;
 
 class CritiqueFactory extends Factory
 {
+    use Likeable;
     protected $class_name = 'critique';
 
 

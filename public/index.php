@@ -61,6 +61,10 @@ if($page === 'dislike'){
     $controller = new \app\php\controller\HomeController;
     $controller->dislike();
 }
+if($page === 'liketest'){
+    $controller = new \app\php\controller\HomeController;
+    $controller->liketest();
+}
 /*
 $array = array('nom' => 'Nassim' , 'prenom' => 'ZUBERI', 'email' => 'nassim.zuberi2@hotmail.fr', 'mdp' => '123456', 'pseudo' => 'Gosphos', 'dateinscription' => '2019-09-26');
 

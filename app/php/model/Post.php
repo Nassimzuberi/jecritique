@@ -51,7 +51,23 @@ class Post
     private $like;
     private $dislike;
     private $retweet;
+    private $imgname;
 
+    /**
+     * @return mixed
+     */
+    public function getImgname()
+    {
+        return $this->imgname;
+    }
+
+    /**
+     * @param mixed $imgname
+     */
+    public function setImgname($imgname)
+    {
+        $this->imgname = $imgname;
+    }
 
 
 

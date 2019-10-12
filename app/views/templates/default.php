@@ -68,7 +68,7 @@
 
 
 <div>
-    <div class="container" style="padding-top: 30px;">
+    <div class="container" style="padding-top: 30px;padding-bottom:30px;">
         <?= $content; ?>
     </div>
 

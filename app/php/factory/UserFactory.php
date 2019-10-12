@@ -38,11 +38,19 @@ class UserFactory extends Factory
 
         return $this->user;
     }
-    public function read(){
 
+    public function action($idaction,$action,$objet){
+        if(isset($_SESSION['user'])){
+            $req = $this->getDb()->query("SELECT * FROM action where idAction = {$idaction} AND libAction = '{$action}' AND  libObjet = '{$objet}' AND idUser = {$_SESSION['user']} ");
+            $res = $req->fetch();
+            if($res){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }else{
+            return false;
+        }
     }
-
-    public function update(){
-    }
-
 }

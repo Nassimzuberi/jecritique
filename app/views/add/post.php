@@ -9,7 +9,7 @@
 
 
 
-    <form method="post" action="" >
+    <form method="post" action=""  enctype="multipart/form-data">
         <div class="form-group">
         <label>Titre :</label>
         <input type="text" name="titre" class="form-control">
@@ -23,6 +23,8 @@
                 <option value="<?= $categorie['id'] ;?>"><?= $categorie['lib'] ; ?></option>
             <?php endforeach; ?>
         </select>
+            <label>Ajouter un média :</label>
+            <input type="file" name="image" class="form-control">
         <label>Texte :</label>
         <textarea name="text" class="form-control"></textarea>
 
